@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --bg:           #0f0f0f;
+  --surface:      #181818;
+  --surface-2:    #222222;
+  --surface-3:    #2c2c2c;
+  --accent:       #e8e8e8;
+  --accent-dim:   #888888;
+  --accent-faint: #444444;
+  --red:          #e50914;
+  --green:        #46d369;
+  --yellow:       #f5c518;
+  --border:       rgba(255,255,255,0.07);
+  --font-display: "Bebas Neue", "Impact", sans-serif;
+  --font-body:    "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--accent);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.banner-card {
+  transition: background 180ms ease, transform 180ms ease;
+}
+.banner-card:hover {
+  background: var(--surface-2) !important;
+  transform: translateX(3px);
+}
+
+.poster-thumb {
+  transition: box-shadow 200ms ease;
+}
+.banner-card:hover .poster-thumb {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.18);
+}
+
+
+.rank-num {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.12);
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -700px 0; }
+  100% { background-position: 700px 0; }
+}
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--surface) 25%,
+    var(--surface-3) 50%,
+    var(--surface) 75%
+  );
+  background-size: 700px 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-card { transition: none; }
+  .shimmer     { animation: none; }
+}
